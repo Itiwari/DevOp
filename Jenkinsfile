@@ -70,10 +70,7 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: "RCov Report"
               ]
-              
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+              notifyBuildCompleted();
         }  // always over
     }  // post over
     
@@ -86,6 +83,16 @@ pipeline {
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 subject: "Jenkins Build Started: Job ${env.JOB_NAME}"
   }
+ def notifyBuildCompleted()
+  {
+	  
+            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+	  echo "Build Status Sent!";
+      
+  }
+
  /* 
   def notifyBuildStarted(String buildStatus = 'STARTED') {
   // build status of null means successful
