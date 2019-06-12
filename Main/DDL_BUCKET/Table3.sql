@@ -1,16 +1,26 @@
-spool "C:/Users/itiwari/Desktop/Project/Table3.txt"
-CREATE TABLE LOGX11 ( id INT PRIMARY KEY, name VARCHAR(20) );
-INSERT INTO LOGX11 VALUES ( 11, 'Alpha' );
-INSERT INTO LOGX11 VALUES ( 22, 'Beta' );
-INSERT INTO LOGX11 VALUES ( 33, 'Charlie' );
-INSERT INTO LOGX11 VALUES ( 44, 'Darson' );
-INSERT INTO LOGX11 VALUES ( 55, 'Eddy' );
-INSERT INTO LOGX11 VALUES ( 66, 'Finch' );
-INSERT INTO LOGX11 VALUES ( 77, 'Garry' );
-INSERT INTO LOGX11 VALUES ( 88, 'Harry' );
-INSERT INTO LOGX11 VALUES ( 99, 'Irwin' );
-INSERT INTO LOGX11 VALUES ( 129, 'Junkie' );
-INSERT INTO LOGX11 VALUES ( 199, 'Kevin' );
-INSERT INTO LOGX11 VALUES ( 239, 'Liam' );
-INSERT INTO LOGX11 VALUES ( 249, 'Martin' );
-spool off;
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES
+           WHERE TABLE_NAME = N'employee_id')
+BEGIN
+  drop table employee_id
+END
+
+ELSE
+
+BEGIN
+ CREATE TABLE employee_id (
+        emp_nm nvarchar(30) not null,
+             emp_id nvarchar(8),
+             b_emp_id nvarchar(8)
+             PRIMARY KEY(emp_nm) );
+
+INSERT INTO employee_id
+       (emp_nm, emp_id)
+VALUES
+       ('Bob', 'A1234567'),
+       ('Lisa', 'A1234568')
+
+INSERT INTO employee_id
+       (emp_nm, b_emp_id)
+VALUES
+       ('Priyanka', 'B1234567');
+End
