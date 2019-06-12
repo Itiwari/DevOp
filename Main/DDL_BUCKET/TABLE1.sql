@@ -1,3 +1,4 @@
+spool "C:/Users/itiwari/Desktop/Project/DDL1.txt"
 CREATE TABLE LOG ( id INT PRIMARY KEY, name VARCHAR(20) );
 INSERT INTO LOG VALUES ( 11, 'Alpha' );
 INSERT INTO LOG VALUES ( 22, 'Beta' );
@@ -9,3 +10,4 @@ INSERT INTO LOG VALUES ( 77, 'Garry' );
 INSERT INTO LOG VALUES ( 88, 'Harry' );
 INSERT INTO LOG VALUES ( 99, 'Irwin' );
 INSERT INTO LOG VALUES ( 129, 'Junkie' );
+spool off;
