@@ -1,0 +1,14 @@
+spool "C:/Users/itiwari/Desktop/Project/Table2.txt"
+CREATE TABLE LOGX ( id INT PRIMARY KEY, name VARCHAR(20) );
+INSERT INTO LOGX VALUES ( 11, 'Alpha' );
+INSERT INTO LOGX VALUES ( 22, 'Beta' );
+INSERT INTO LOGX VALUES ( 33, 'Charlie' );
+INSERT INTO LOGX VALUES ( 44, 'Darson' );
+INSERT INTO LOGX VALUES ( 55, 'Eddy' );
+INSERT INTO LOGX VALUES ( 66, 'Finch' );
+INSERT INTO LOGX VALUES ( 77, 'Garry' );
+INSERT INTO LOGX VALUES ( 88, 'Harry' );
+INSERT INTO LOGX VALUES ( 99, 'Irwin' );
+INSERT INTO LOGX VALUES ( 129, 'Junkie' );
+INSERT INTO LOGX VALUES ( 199, 'Kevin' );
+spool off;
