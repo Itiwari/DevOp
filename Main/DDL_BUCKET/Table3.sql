@@ -1,3 +1,4 @@
+spool "C:/Users/itiwari/Desktop/Project/Table3.txt"
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES
            WHERE TABLE_NAME = N'employee_id')
 BEGIN
@@ -24,3 +25,4 @@ INSERT INTO employee_id
 VALUES
        ('Priyanka', 'B1234567');
 End
+spool off;
