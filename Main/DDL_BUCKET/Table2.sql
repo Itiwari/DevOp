@@ -1,8 +1,8 @@
   
-spool "C:/Users/itiwari/Desktop/Project/Table2.txt
-CREATE TABLE Beta122 ( id INT PRIMARY KEY, name VARCHAR(20) );
-INSERT INTO Beta122 ( 1, 'Aloha' );
-INSERT INTO Beta122 ( 2, 'Barac' );
-INSERT INTO Beta122 ( 3, 'Jamie' );
-INSERT INTO Beta122 ( 4, 'Pistachhio' );
+spool "C:/Users/itiwari/Desktop/Project/Table2.txt"
+CREATE TABLE AlphaXX221 ( id INT PRIMARY KEY, name VARCHAR(20) );
+INSERT INTO AlphaXX221 VALUES ( 1, 'Alpha' );
+INSERT INTO AlphaXX221 VALUES ( 2, 'Beta' );
+INSERT INTO AlphaXX221 VALUES ( 3, 'Gamma' );
+INSERT INTO AlphaXX221 VALUES ( 4, 'Element' ); 
 spool off;
