@@ -13,14 +13,14 @@ pipeline {
                 notifyBuildStarted();
             }
         }
-        stage('Building DML files->PKS files->PKB files->Sh files') {
+        stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts') {
     	steps {
 	         //bat label: '', script: 'echo "Hello world"';
 		      //bat script: 'echo Hello Ishita';
 		      //bat script: 'cd C:/Users/itiwari/Documents/';
 		      //bat script: 'echo $pwd';
 		      //bat script: 'dir';
-		      bat script: 'sh C:/Users/itiwari/Documents/All_In_One.sh';
+		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		}
 	} 
 	/*
@@ -70,7 +70,10 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: "RCov Report"
               ]
-              notifyBuildCompleted();
+              
+            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
         }  // always over
     }  // post over
     
@@ -83,16 +86,6 @@ pipeline {
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 subject: "Jenkins Build Started: Job ${env.JOB_NAME}"
   }
- def notifyBuildCompleted()
-  {
-	  
-            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
-	  echo "Build Status Sent!";
-      
-  }
-
  /* 
   def notifyBuildStarted(String buildStatus = 'STARTED') {
   // build status of null means successful
