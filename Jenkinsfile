@@ -14,7 +14,8 @@ pipeline {
                 notifyBuildStarted();
 		    
   // Archive the built artifacts
-  archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+   //
+		    archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
             }
         }
         stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts') {
@@ -27,7 +28,15 @@ pipeline {
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		
   // Archive the built artifacts
-archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+	archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+	publishHTML (target: [
+      allowMissing: false,
+      alwaysLinkToLastBuild: false,
+      keepAll: true,
+      reportDir: 'coverage',
+      reportFiles: 'index.html',
+      reportName: "RCov Report"
+    ])
 		}
 	} 
 	/*
