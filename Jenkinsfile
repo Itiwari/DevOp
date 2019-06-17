@@ -29,6 +29,11 @@ pipeline {
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		  //   archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'	
 	     }
+		post {
+			success {
+				archiveArtifacts 'target/*.hpi,target/*.jpi'
+			}
+		}
 	}
 		
   // Archive the built artifacts
