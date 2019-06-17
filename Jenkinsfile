@@ -31,7 +31,7 @@ pipeline {
 	     }
 		post {
 			success {
-				archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+				archiveArtifacts artifacts: '/**,build/test/results/*.xml', allowEmptyArchive: true
 			}
 		}
 	}
