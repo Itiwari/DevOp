@@ -14,7 +14,7 @@ pipeline {
                 notifyBuildStarted();
 		    
   // Archive the built artifacts
-  archive (includes: 'pkg/*.gem')
+  archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
             }
         }
         stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts') {
@@ -27,7 +27,7 @@ pipeline {
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		
   // Archive the built artifacts
-  archive (includes: 'pkg/*.gem')
+archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
 		}
 	} 
 	/*
