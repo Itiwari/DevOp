@@ -27,12 +27,12 @@ pipeline {
 		      //bat script: 'echo $pwd';
 		      //bat script: 'dir';
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
-		     archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'	
+		  //   archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'	
 	     }
 	}
 		
   // Archive the built artifacts
-	archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
+//	archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
 /*	publishHTML (target: [
       allowMissing: false,
       alwaysLinkToLastBuild: false,
@@ -76,7 +76,7 @@ pipeline {
             // Archive the built artifacts
             echo "Success";
            // archive (includes: 'C:/Users/itiwari/Desktop/Project/')
-	         archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
+	      //   archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
         }
 
         always {
