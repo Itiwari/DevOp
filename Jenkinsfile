@@ -15,7 +15,8 @@ pipeline {
 		    
   // Archive the built artifacts
    //
-		    //archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+		   // archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+		    archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
             }
         }
         stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts') {
@@ -26,11 +27,12 @@ pipeline {
 		      //bat script: 'echo $pwd';
 		      //bat script: 'dir';
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
+		     archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'	
 	     }
 	}
 		
   // Archive the built artifacts
-	//archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+	archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
 /*	publishHTML (target: [
       allowMissing: false,
       alwaysLinkToLastBuild: false,
@@ -73,15 +75,16 @@ pipeline {
      success {
             // Archive the built artifacts
             echo "Success";
-            archive (includes: 'C:/Users/itiwari/Desktop/Project/')
+           // archive (includes: 'C:/Users/itiwari/Desktop/Project/')
+	         archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
         }
 
         always {
             bat script: 'echo "I will always say Hello again!"'
-            junit '**/nosetests.xml'
-            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
-        
-            /* publish html
+            // junit '**/nosetests.xml'
+           //step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
+        /*
+             publish html
             publishHTML target:[
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
