@@ -16,7 +16,7 @@ pipeline {
   // Archive the built artifacts
    //
 		   // archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
-		    archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
+		   // archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
             }
         }
         stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts') {
