@@ -26,6 +26,8 @@ pipeline {
 		      //bat script: 'echo $pwd';
 		      //bat script: 'dir';
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
+	     }
+	}
 		
   // Archive the built artifacts
 	//archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
@@ -79,7 +81,7 @@ pipeline {
             junit '**/nosetests.xml'
             step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
         
-            // publish html
+            /* publish html
             publishHTML target:[
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
@@ -87,7 +89,7 @@ pipeline {
                 reportDir: 'C:/Users/itiwari/Desktop/Project/',
                 reportFiles: 'index.html',
                 reportName: "RCov Report"
-              ]
+              ] */
               
             emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
