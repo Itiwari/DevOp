@@ -12,6 +12,9 @@ pipeline {
         stage('Build Started Mail Sent') {
             steps {
                 notifyBuildStarted();
+		    
+  // Archive the built artifacts
+  archive (includes: 'pkg/*.gem')
             }
         }
         stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts') {
@@ -22,6 +25,9 @@ pipeline {
 		      //bat script: 'echo $pwd';
 		      //bat script: 'dir';
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
+		
+  // Archive the built artifacts
+  archive (includes: 'pkg/*.gem')
 		}
 	} 
 	/*
