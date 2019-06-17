@@ -15,7 +15,7 @@ pipeline {
 		    
   // Archive the built artifacts
    //
-		    archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+		    //archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
             }
         }
         stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts') {
@@ -28,8 +28,8 @@ pipeline {
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		
   // Archive the built artifacts
-	archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
-	publishHTML (target: [
+	//archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
+/*	publishHTML (target: [
       allowMissing: false,
       alwaysLinkToLastBuild: false,
       keepAll: true,
@@ -39,7 +39,7 @@ pipeline {
     ])
 		}
 	} 
-	/*
+	
 	stage('Executing .sh files') {
     	steps {
 		     bat script: 'sh C:/Users/itiwari/Documents/SampleSh.sh';
@@ -76,7 +76,9 @@ pipeline {
 
         always {
             bat script: 'echo "I will always say Hello again!"'
-            
+            junit '**/nosetests.xml'
+            step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
+        
             // publish html
             publishHTML target:[
                 allowMissing: false,
