@@ -19,7 +19,7 @@ pipeline {
 		   // archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
             }
         }
-        stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts') {
+        stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     	steps {
 	         //bat label: '', script: 'echo "Hello world"';
 		      //bat script: 'echo Hello Ishita';
