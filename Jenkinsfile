@@ -42,7 +42,7 @@ pipeline {
         }
 
         always {
-            bat script: 'echo "Sending Feedback Mail"'
+            echo "Sending Feedback Mail"
      		// Feedback Mail Sent
             emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
