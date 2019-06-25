@@ -14,7 +14,7 @@ pipeline {
                 notifyBuildStarted();
             }
         }
-	     stage('Secrets file found') {
+	    /* stage('Secrets file found') {
                 steps {
                     withCredentials([file(credentialsId: 'credentials', 
                     variable: 'Declarations_File')]) {
@@ -23,8 +23,8 @@ pipeline {
 			       bat script: "type ${Declarations_File}"     
                        }
                     }
-                }
-            }
+                } 
+            } */
         stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     	steps {
 	         //bat label: '', script: 'echo "Hello world"';
