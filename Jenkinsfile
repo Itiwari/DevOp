@@ -14,7 +14,7 @@ pipeline {
             }
 	}
 
-		stage('Fetch Secrets from Declaration_File found and then Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
+		stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		 } // step over here credentials part over here
