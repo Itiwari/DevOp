@@ -14,10 +14,11 @@ pipeline {
             }
 	}
 
-        withCredentials([file(credentialsId: 'credentials', 
-                    variable: 'Declarations_File')]) {
 		stage('Fetch Secrets from Declaration_File found and then Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
+			
+        withCredentials([file(credentialsId: 'credentials', 
+                    variable: 'Declarations_File')]) {
 	         //bat label: '', script: 'echo "Hello world"';
 		      //bat script: 'echo Hello Ishita';
 		      //bat script: 'cd C:/Users/itiwari/Documents/';
