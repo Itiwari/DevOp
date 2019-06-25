@@ -19,6 +19,7 @@ pipeline {
 			
         withCredentials([file(credentialsId: 'credentials', 
                     variable: 'Declarations_File')]) {
+		echo ${Declarations_File}
 	         //bat label: '', script: 'echo "Hello world"';
 		      //bat script: 'echo Hello Ishita';
 		      //bat script: 'cd C:/Users/itiwari/Documents/';
