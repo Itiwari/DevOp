@@ -32,7 +32,7 @@ pipeline {
 		      //bat script: 'cd C:/Users/itiwari/Documents/';
 		      //bat script: 'echo $pwd';
 		      //bat script: 'dir';
-			bat script: 'C:/Users/itiwari/Documents';
+			bat script: 'cd C:/Users/itiwari/Documents';
 			bat script: 'source userpass.txt'
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		  //   archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
