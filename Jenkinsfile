@@ -1,4 +1,4 @@
-
+e
 pipeline {
     agent any
     environment {
@@ -26,6 +26,7 @@ pipeline {
 			//bat script: 'source userpass.txt'
 		 withCredentials([file(credentialsId: 'credentials', 
                     variable: 'Declarations_File')]) {
+			 bat script: 'echo $Declarations_File'
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		 } // credentials part over here
 	     }  // step over here
