@@ -19,6 +19,16 @@ pipeline {
 		   // archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
             }
         }
+	     stage('Secrets file found') {
+                steps {
+                    withCredentials([file(credentialsId: 'credentials', 
+                    variable: 'Declarations_File')]) {
+                       dir("C:/Users/itiwari/Documents") {
+                        bat script: "echo ${Declarations_File}"
+                       }
+                    }
+                }
+            }
         stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     	steps {
 	         //bat label: '', script: 'echo "Hello world"';
