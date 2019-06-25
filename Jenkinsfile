@@ -16,58 +16,15 @@ pipeline {
 
 		stage('Fetch Secrets from Declaration_File found and then Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
-			
-        withCredentials([file(credentialsId: 'credentials', 
-                    variable: 'Declarations_File')]) {
-		echo "${Declarations_File}"
-	         //bat label: '', script: 'echo "Hello world"';
-		      //bat script: 'echo Hello Ishita';
-		      //bat script: 'cd C:/Users/itiwari/Documents/';
-		      //bat script: 'echo $pwd';
-		      //bat script: 'dir';
-			//bat script: 'cd C:/Users/itiwari/Documents';
-			//bat script: 'source userpass.txt'
-		
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
 		 } // step over here credentials part over here
-	     }  // stage over here
-		/*post {
+		post {
 			success {
 				archiveArtifacts artifacts: '/**,build/test/results/*.xml', allowEmptyArchive: true
 			}
-		} */
-	}  // withCredentials over here
-		
-  // Archive the built artifacts
-//	archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
-/*	publishHTML (target: [
-      allowMissing: false,
-      alwaysLinkToLastBuild: false,
-      keepAll: true,
-      reportDir: 'coverage',
-      reportFiles: 'index.html',
-      reportName: "RCov Report"
-    ])
-		}
-	} 
+		} 
+    }  // stage over here
 	
-	stage('Executing .sh files') {
-    	steps {
-		     bat script: 'sh C:/Users/itiwari/Documents/SampleSh.sh';
-		}
-	} 
-	
-	stage('Executing Jar file')
-	{
-	    steps {
-	      bat script: "java -jar C:/Users/itiwari/Documents/ABC/hello.jar testing654 n1-standard-8"
-	       alpha ='1';
-	        bat script: 'java -jar C:/Users/itiwari/Documents/ABC/hello.jar';
-	    
-	    }
-	} */
-	
-        
         stage('Success') {
             when {
                 expression { doError == '0' }
@@ -82,25 +39,11 @@ pipeline {
      success {
             // Archive the built artifacts
             echo "Success";
-           // archive (includes: 'C:/Users/itiwari/Desktop/Project/')
-	      //   archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
         }
 
         always {
-            bat script: 'echo "I will always say Hello again!"'
-            // junit '**/nosetests.xml'
-           //step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
-        /*
-             publish html
-            publishHTML target:[
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'C:/Users/itiwari/Desktop/Project/',
-                reportFiles: 'index.html',
-                reportName: "RCov Report"
-              ] */
-              
+            bat script: 'echo "Sending Feedback Mail"'
+     		// Feedback Mail Sent
             emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
@@ -109,6 +52,7 @@ pipeline {
     
 } // pipeline over
   
+// Notify about build has started mail sent
   def notifyBuildStarted()
   {
       
@@ -116,27 +60,5 @@ pipeline {
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 subject: "Jenkins Build Started: Job ${env.JOB_NAME}"
   }
- /* 
-  def notifyBuildStarted(String buildStatus = 'STARTED') {
-  // build status of null means successful
-  buildStatus =  buildStatus ?: 'SUCCESSFUL'
-  // Default values
-  def colorName = 'RED'
-  def colorCode = '#FF0000'
-  def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
-  def summary = "${subject} (${env.BUILD_URL})"
-  // Override default values based on build status
-  if (buildStatus == 'STARTED') {
-    color = 'YELLOW'
-    colorCode = '#FFFF00'
-  } else if (buildStatus == 'SUCCESSFUL') {
-    color = 'GREEN'
-    colorCode = '#00FF00'
-  } else {
-    color = 'RED'
-    colorCode = '#FF0000'
-  }
-  // Send notifications
-  slackSend (color: colorCode, message: summary)
-} */
+
 
