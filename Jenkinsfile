@@ -15,8 +15,10 @@ pipeline {
             }
 	}
 
-        stage('Fetch Secrets from Declaration_File found and then Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
-    	steps {
+        withCredentials([file(credentialsId: 'credentials', 
+                    variable: 'Declarations_File')]) {
+		stage('Fetch Secrets from Declaration_File found and then Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
+    		steps {
 	         //bat label: '', script: 'echo "Hello world"';
 		      //bat script: 'echo Hello Ishita';
 		      //bat script: 'cd C:/Users/itiwari/Documents/';
@@ -24,17 +26,16 @@ pipeline {
 		      //bat script: 'dir';
 			//bat script: 'cd C:/Users/itiwari/Documents';
 			//bat script: 'source userpass.txt'
-		 withCredentials([file(credentialsId: 'credentials', 
-                    variable: 'Declarations_File')]) {
+		
 		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
-		 } // credentials part over here
-	     }  // step over here
-		post {
+		 } // step over here credentials part over here
+	     }  // stage over here
+		/*post {
 			success {
 				archiveArtifacts artifacts: '/**,build/test/results/*.xml', allowEmptyArchive: true
 			}
-		}
-	}  // stage for building the files over here
+		} */
+	}  // withCredentials over here
 		
   // Archive the built artifacts
 //	archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
