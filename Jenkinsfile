@@ -16,7 +16,12 @@ pipeline {
 
 		stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
-		      bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
+			/* withCredentials([usernameColonPassword(credentialsId: 'Script_Path', variable: 'PATH')]) {
+		      bat script: 'sh $PATH/md5.sh';
+			 } */
+				 withCredentials([usernameColonPassword(credentialsId: 'Execution_Script', variable: 'FULL_PATH')]) {
+		      bat script: 'sh $FULL_PATH';
+			 }
 		 } // step over here credentials part over here
 		post {
 			success {
