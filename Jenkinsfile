@@ -12,11 +12,6 @@ pipeline {
         stage('Build Started Mail Sent') {
             steps {
                 notifyBuildStarted();
-		    
-  // Archive the built artifacts
-   //
-		   // archiveArtifacts artifacts: 'screenshots/**,build/test/results/*.xml', allowEmptyArchive: true
-		   // archiveArtifacts artifacts: 'C:/Users/itiwari/Desktop/Project'
             }
         }
 	     stage('Secrets file found') {
@@ -25,6 +20,7 @@ pipeline {
                     variable: 'Declarations_File')]) {
                        dir("C:/Users/itiwari/Documents") {
                         bat script: "echo ${Declarations_File}"
+			       bat script: "type ${Declarations_File}"     
                        }
                     }
                 }
