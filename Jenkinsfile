@@ -14,12 +14,18 @@ pipeline {
             }
 	}
 
+	    stage ('Print Secret PATH'){
+	    steps {
+	    withCredentials([file(credentialsId: 'Script_Path', 
+                    variable: 'Declarations_File')]) {  
+                        bat script: "echo ${Declarations_File}"
+                    }
+ 		   }
+		}
 		stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
-			 withCredentials([usernameColonPassword(credentialsId: 'Script_Path', variable: 'PATH')]) {
-				 bat script: "echo ${PATH}";
 		      bat script: 'sh C:/Users/itiwari/Documents//md5.sh';
-			 } 
+			
 				
 		 } // step over here credentials part over here
 		post {
