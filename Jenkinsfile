@@ -16,9 +16,11 @@ pipeline {
 
 	    stage ('Print Secret PATH'){
 	    steps {
-	    withCredentials([file(credentialsId: 'Script_Path', 
+	    withCredentials([file(credentialsId: 'credentials', 
                     variable: 'Declarations_File')]) {  
+		    dir ('C:/Users/itiwari/Documents') {
                         bat script: "echo ${Declarations_File}"
+		       }
                     }
  		   }
 		}
