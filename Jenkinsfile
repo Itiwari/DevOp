@@ -14,7 +14,7 @@ pipeline {
             }
 	}
 
-	    stage ('Print Secret PATH'){
+	/*    stage ('Print Secret PATH'){
 	    steps {
 	    withCredentials([file(credentialsId: 'credentials', 
                     variable: 'Declarations_File')]) {  
@@ -23,19 +23,24 @@ pipeline {
 		       }
                     }
  		   }
-		}
+		} */
 		stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
-		      bat script: 'sh C:/Users/itiwari/Documents//md5.sh';
-			
-				
+			 withCredentials([file(credentialsId: 'credentials', variable: 'Declarations_File')]) {  
+			withEnv(['secret="$Declarations_File"']) {
+		        dir ('C:/Users/itiwari/Documents') {
+                        bat script: "echo ${Declarations_File}"  // masked in the console output
+		        bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
+			}   // dir block closed here				
+		}  // withEnv block closed here
+	}  // withCredentials block closed
 		 } // step over here credentials part over here
 		post {
 			success {
 				archiveArtifacts artifacts: '/**,build/test/results/*.xml', allowEmptyArchive: true
 			}
 		} 
-    }  // stage over here
+    }  // main  over here
 	
         stage('Success') {
             when {
