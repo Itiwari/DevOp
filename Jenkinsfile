@@ -18,7 +18,7 @@ pipeline {
     		steps {
 			 withCredentials([usernameColonPassword(credentialsId: 'Script_Path', variable: 'PATH')]) {
 				 bat script: 'echo $PATH';
-		      bat script: 'sh $PATH/md5.sh';
+		      bat script: 'sh C:/Users/itiwari/Documents//md5.sh';
 			 } 
 				
 		 } // step over here credentials part over here
