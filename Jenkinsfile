@@ -26,8 +26,8 @@ pipeline {
 		} */
 		stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
-			withCredentials([file(credentialsId: 'Secret_Filename', variable: 'Alpha)]) {  
-					      withEnv(['$Secret=$Alpha']) {
+			withCredentials([file(credentialsId: 'Secret_Filename', variable: 'Alpha')]) {  
+					      withEnv(['Secret=$Alpha']) {
 		        dir ('C:/Users/itiwari/Documents') {
                         bat script: "echo $Secret" // masked in the console output
 		       //at script: 'sh C:/Users/itiwari/Documents/md5.sh';
