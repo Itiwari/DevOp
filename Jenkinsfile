@@ -29,7 +29,7 @@ pipeline {
 			withCredentials([string(credentialsId: 'Secret_Filename', variable: 'Alpha')]) { 
 				withEnv(['My_Secret=${Alpha}']) {
 					bat script: "echo ${Alpha}";
-					println(hudson.util.Secret.fromString("${Alpha}").getPlainText())
+					println(hudson.util.Secret.fromString("Secret_Filename").getPlainText())
                         bat script: "echo $My_Secret" // masked in the console output
 			bat script: 'sh C:/Users/itiwari/Documents/thursday1.sh'	
 		       //bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
