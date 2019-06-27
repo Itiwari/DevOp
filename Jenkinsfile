@@ -27,11 +27,12 @@ pipeline {
 		stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
 			withCredentials([string(credentialsId: 'Secret_Filename', variable: 'Alpha')]) { 
-				withEnv(['Secret="$Alpha"']) {
-		        dir ('C:/Users/itiwari/Documents') {
-                        bat script: "echo $Secret" // masked in the console output
-		       //at script: 'sh C:/Users/itiwari/Documents/md5.sh';
-			}   // dir block closed here				
+				withEnv(['My_Secret="$Alpha"']) {
+		        
+                        bat script: "echo $My_Secret" // masked in the console output
+			bat script: 'sh C:/Users/itiwari/Documents/thursday1.sh'	
+		       //bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
+					
 		}  // withEnv block closed here
 	}  // withCredentials block closed
 		 } // step over here credentials part over here
