@@ -28,7 +28,7 @@ pipeline {
     		steps {
 			withCredentials([string(credentialsId: 'Secret_Filename', variable: 'Alpha')]) { 
 				withEnv(['My_Secret="$Alpha"']) {
-		        
+					bat script: "echo ${Alpha}";
                         bat script: "echo $My_Secret" // masked in the console output
 			bat script: 'sh C:/Users/itiwari/Documents/thursday1.sh'	
 		       //bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
