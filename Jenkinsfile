@@ -14,35 +14,38 @@ pipeline {
             }
 	}
 
-	/*    stage ('Print Secret PATH'){
-	    steps {
-	    withCredentials([file(credentialsId: 'credentials', 
-                    variable: 'Declarations_File')]) {  
-		    dir ('C:/Users/itiwari/Documents') {
-                        bat script: "echo ${Declarations_File}"
-		       }
-                    }
- 		   }
-		} */
 		stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
     		steps {
-			withCredentials([string(credentialsId: 'Secret_Filename', variable: 'Alpha')]) { 
-				withEnv(['My_Secret=${Alpha}']) {
-					bat script: "echo ${Alpha}";
-					//println(hudson.util.Secret.fromString("Secret_Filename").getPlainText())
-                        bat script: "echo $My_Secret" // masked in the console output
-			bat script: 'sh C:/Users/itiwari/Documents/thursday1.sh'	
-		       //bat script: 'sh C:/Users/itiwari/Documents/md5.sh';
-					
-		}  // withEnv block closed here
-	}  // withCredentials block closed
-		 } // step over here credentials part over here
+			withCredentials([string(credentialsId: 'Docs', variable: 'Master'),
+                string(credentialsId: 'Declarations', variable: 'alpha'),
+                string(credentialsId: 'GIT_MAIN', variable: 'Git_Main'),
+                string(credentialsId: 'DB_UNAME', variable: 'uname'),
+                string(credentialsId: 'DB_Password', variable: 'pswd'),
+                string(credentialsId: 'SID', variable: 'sid'),
+                string(credentialsId: 'GIT_URL', variable: 'git_url'),
+                string(credentialsId: 'DDL', variable: 'ddl'),
+                string(credentialsId: 'DML', variable: 'dml'),
+                string(credentialsId: 'PKS', variable: 'pks'),
+                string(credentialsId: 'PKB', variable: 'pkb'),
+                string(credentialsId: 'SHELL', variable: 'shell'),
+                string(credentialsId: 'NEW_PATH', variable: 'new_path')
+                ])  
+                {   // withCredentials start here
+                   dir("${Master}") {
+                   	bat script: 'sh md5.sh';
+                   	} // dir over here
+			
+                }  // withCredentials over
+			
+		}  // steps over here
+			
 		post {
 			success {
-				archiveArtifacts artifacts: '/**,build/test/results/*.xml', allowEmptyArchive: true
-			}
-		} 
-    }  // main  over here
+					archiveArtifacts artifacts: '/**,build/test/results/*.xml', allowEmptyArchive: true
+				}
+		     } 
+			
+    		}  // stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') over here
 	
         stage('Success') {
             when {
