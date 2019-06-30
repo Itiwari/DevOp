@@ -15,29 +15,26 @@ pipeline {
 	}
 
 		stage('Building DDL files->DML files->PKS files->PKB files->Shell Scripts->Jar files') {
-    		steps {
-			withCredentials([string(credentialsId: 'Docs', variable: 'Master'),
-                string(credentialsId: 'Declarations', variable: 'alpha'),
-                string(credentialsId: 'GIT_MAIN', variable: 'Git_Main'),
-                string(credentialsId: 'DB_UNAME', variable: 'uname'),
-                string(credentialsId: 'DB_Password', variable: 'pswd'),
-                string(credentialsId: 'SID', variable: 'sid'),
+            steps {
+                withCredentials([string(credentialsId: 'Docs', variable: 'Master'),
                 string(credentialsId: 'GIT_URL', variable: 'git_url'),
                 string(credentialsId: 'DDL', variable: 'ddl'),
                 string(credentialsId: 'DML', variable: 'dml'),
                 string(credentialsId: 'PKS', variable: 'pks'),
                 string(credentialsId: 'PKB', variable: 'pkb'),
                 string(credentialsId: 'SHELL', variable: 'shell'),
+                string(credentialsId: 'DB_UNAME', variable: 'uname'),
+                string(credentialsId: 'DB_PASSWORD', variable: 'pswd'),
+                string(credentialsId: 'SID', variable: 'sid'),
+                string(credentialsId: 'GIT_START', variable: 'Git_Main'),
                 string(credentialsId: 'NEW_PATH', variable: 'new_path')
                 ])  
-                {   // withCredentials start here
+                {
                    dir("${Master}") {
-                   	bat script: 'sh md5.sh';
-                   	} // dir over here
-			
+                   bat script: 'sh md5.sh';
+                   } // dir over
                 }  // withCredentials over
-			
-		}  // steps over here
+            }  // steps over
 			
 		post {
 			success {
