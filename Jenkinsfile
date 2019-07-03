@@ -6,7 +6,7 @@ pipeline {
     stages {
 	    stage ('check-in') {
 		steps {
-    			input 'Are you sure?'
+    			input 'Do you want to continue building?'
 		}
 	    }
          stage('Build Started Mail Sent') {
