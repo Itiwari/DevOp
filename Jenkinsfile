@@ -4,6 +4,11 @@ pipeline {
         doError = '0'
     }
     stages {
+	    stage ('check-in') {
+		steps {
+    			input 'Are you sure?'
+		}
+	    }
          stage('Build Started Mail Sent') {
             steps {
                  notifyBuildStarted();
