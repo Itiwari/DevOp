@@ -1,10 +1,10 @@
     
 spool "C:/Users/itiwari/Desktop/Project/Table1.txt"
-CREATE TABLE cwuq211 ( id INT PRIMARY KEY, name VARCHAR(20) );
-INSERT INTO cwuq211 VALUES ( 1, 'Alpha' );
-INSERT INTO cwuq211 VALUES ( 2, 'Beta' );
-INSERT INTO cwuq211 VALUES ( 3, 'Gamma' );
-INSERT INTO cwuq211 VALUES ( 4, 'Delta' ); 
-INSERT INTO cwuq211 VALUES ( 5, 'Elphinstone' ); 
-INSERT INTO cwuq211 VALUES ( 6, 'Fartsy' ); 
+CREATE TABLE Rqwe ( id INT PRIMARY KEY, name VARCHAR(20) );
+INSERT INTO Rqwe VALUES ( 1, 'Alpha' );
+INSERT INTO Rqwe VALUES ( 2, 'Beta' );
+INSERT INTO Rqwe VALUES ( 3, 'Gamma' );
+INSERT INTO Rqwe VALUES ( 4, 'Delta' ); 
+INSERT INTO Rqwe VALUES ( 5, 'Elphinstone' ); 
+INSERT INTO Rqwe VALUES ( 6, 'Fartsy' ); 
 spool off;
