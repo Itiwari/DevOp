@@ -24,7 +24,7 @@ pipeline {
                 ])  
                 {
                    dir("C:/Users/itiwari/Documents") {
-                   bat script: 'sh md5_some.sh';
+                   bat script: 'sh All_In_One.sh';
                    } // dir block over
                 }  // withCredentials block over
             }  // steps over
